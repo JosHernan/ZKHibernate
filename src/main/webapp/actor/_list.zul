@@ -1,0 +1,48 @@
+
+
+<window id="${arg.top_id}" border="none" title="Actor List"
+	viewModel="@id('vm') @init('com.main.zk.Rental.MyViewModel')"	>
+  <separator bar="false" spacing="5px" orient="horizontal"/>
+
+
+
+    <separator bar="false" spacing="5px" orient="horizontal"/>
+    
+				<div>
+			<listbox width="100%" id="" mold="paging" pageSize="10"  
+				pagingPosition="bottom" selectedItem="@bind(vm.selectedItem)"
+				model="@load(vm.showActor)">
+				<listhead sizable="true">
+					<listheader align="center"
+						 label="Actor Id"
+						sortDirection="ascending" sort="auto(actor_id)" />
+					<listheader align="left" label="First Name" />
+					<listheader align="left" label="Last Name" />
+				
+					<listheader align="left" label="Operations" width="80px" />
+				</listhead>
+				<template name="model" var="act1">
+					<listitem>
+						<listcell label="@load(act1.actor_id)"  />
+						<listcell label="@load(act1.first_name)" />
+						<listcell label="@load(act1.last_name)" />
+						
+						<listcell>
+							<hbox spacing="15px" >
+							<image tooltiptext="Edit Actor" src="/image/ico_editar.png"  onClick="@command('onEdit',actorRecord=act1)"/>
+							<image  tooltiptext="Delete Actor" src="/image/ico_borrar.png"    onClick="@command('onDelete',actorRecord=act1)" />
+							</hbox>
+						</listcell>
+					</listitem>
+				</template>
+			</listbox>
+		</div>
+		  <button id="show_create_form" onClick="@command('onAddNew')"
+            label="create" sclass="create-button global-action">
+         </button>
+		<separator />
+		<separator />
+		<separator />
+		<separator />
+		<separator />
+	</window>

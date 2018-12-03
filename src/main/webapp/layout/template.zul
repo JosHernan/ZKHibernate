@@ -1,0 +1,138 @@
+<?page title="Template" contentType="text/html;charset=UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/css/libreplan.css"?>
+<?link rel="stylesheet" type="text/css" href="/css/libreplan_zk.css"?>
+<?link rel="stylesheet" type="text/css" href="/css/perspectives.css"?>
+<?component name="customMenu" inline="true" macroURI="_customMenu.zul"?>
+<?component name="button" extends="button" mold="trendy"?>
+
+<zk xmlns:w="client" xmlns:n="native">
+  <zscript>
+        <![CDATA[
+            contextPath = Executions.getCurrent().getContextPath();
+        ]]>
+    </zscript>
+
+<div  height="100%">
+        <timer repeats="true" running="true" delay="20000" onTimer=""/>
+         <borderlayout height="100%" width="100%">
+         <north border="none">
+                <n:div>
+
+                    <n:table width="100%" border="0" cellpadding="0" cellspacing="0">
+                        <n:tr>
+                            <n:td valign="center" class="logo-area">
+                                <n:a href="${contextPath}/">
+                                  
+
+                                    <n:img src="${contextPath}/image/social.png"
+                                            />
+                                </n:a>
+                            </n:td>
+
+                            <n:td valign="top">
+                                <n:table width="100%"  border="0" cellspacing="0" cellpadding="0">
+                                    <n:tr>
+                                        <n:td>
+                                         <customMenu top_id="customMenu" title="Main menu"/>
+                                        </n:td>
+                                    </n:tr>
+                                </n:table></n:td>
+                        </n:tr>
+                    </n:table>
+
+                    <n:div class="user-area">
+                        <n:table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <n:tr>
+                                <n:td class="usuario">
+                                    <div visible="false" >
+                                        Usuario
+                                        <button 
+                                                label="Nombre Escenario" />
+                                        <window id="changeScenarioWindow" visible="false"
+                                                title="Cambio Escenario"
+                                                style="width : 240px;">
+                                            <div id="messagesContainer" />
+                                            <grid>
+                                                <rows>
+                                                    <row>
+                                                        <label value="Selecciona Escenario" />
+                                                        <bandbox
+                                                                id="scenarioBandboxSearch"
+                                                                
+                                                                />
+                                                    </row>
+                                                </rows>
+                                            </grid>
+                                            <button 
+                                                    label="Aceptar" />
+                                            <button
+                                                    label="Cancelar" />
+                                        </window>
+                                    </div>
+                                </n:td>
+                                <n:td class="usuario">User Admin</n:td>
+                                <n:td>
+                                    <n:a href="#" class="cerrar_sesion">
+                                      [Logout]
+                                    </n:a>
+                                </n:td>
+                            </n:tr>
+                        </n:table>
+                    </n:div>
+                </n:div>
+            </north>
+            
+            
+            <center border="none">
+                <borderlayout width="auto" height="100%">
+                    <west sclass="perspectives-column" width="90px" >
+                  
+                        <vbox vflex="1" >
+                            <hbox id="perspectiveButtonsInsertionPoint" sclass="toolbar-box global-commands"
+                                  height="30px" width="90px">
+                                   
+                                <button id="createOrderButton"  image="image/ico_add.png" sclass="planner-icon" label="add"
+                                        tooltiptext="Crear Nuevo proyecto" />
+                            </hbox>
+                            <vbox id="registeredItemsInsertionPoint" width="90px" style="overflow-y:auto;overflow-x:hidden;display:block" vflex="1" />
+                        </vbox>
+                    </west>
+                    <center self="@{insert(content)}" class="main-area" autoscroll="true" />
+
+                </borderlayout>
+
+            </center>
+            
+             <south border="none" if="true">
+                <n:table width="100%">
+                    <n:tr class="footer">
+                        <n:td valign="center">
+                            <n:div if="true" id="warningDefaultPasswdadmin"
+                                   class="footer-messages-area"
+                                   style="display:true">
+                                <div>
+                                    <n:span>
+                                       The admin's account password remains the default one. This is insecure
+                                    </n:span>
+
+                                 
+                                </div>
+                            </n:div>
+
+                        
+                        </n:td>
+                        <n:td height="40" align="right" valign="bottom">
+                        </n:td>
+                    </n:tr>
+                </n:table>
+            </south>
+            
+            
+         </borderlayout> 
+         
+         
+</div>
+
+
+
+</zk>

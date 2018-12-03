@@ -1,0 +1,21 @@
+<?page  contentType="text/html;charset=UTF-8"?>
+
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/template.zul"?>
+<?link rel="shortcut icon" href="/common/image/favicon.ico" type="image/x-icon"?>
+<?link rel="stylesheet" type="text/css" href="/css/libreplan.css"?>
+<?link rel="stylesheet" type="text/css" href="/css/libreplan_zk.css"?>
+<?link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" ?>
+<?link rel="stylesheet" type="text/css" href="/css/dashboard.css" ?>
+
+<zk xmlns:w="client" xmlns:n="native">
+  
+    <div id="idContextMenuTaskAssignment">
+   
+     <div/>
+    
+    </div>
+    	<include self="@{define(content)}" src="none.zul" sclass="contentTabSwitcher"  style="display: block; height: 100%; width: 100%;"/>
+    	
+
+
+</zk>

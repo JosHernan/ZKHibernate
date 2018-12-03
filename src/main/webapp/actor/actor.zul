@@ -1,0 +1,21 @@
+<?page title="Actor"?>
+<?page  id="Create"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/layout/template.zul"?>
+<?link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon"?>
+<?link rel="stylesheet" type="text/css" href="/css/libreplan.css"?>
+<?link rel="stylesheet" type="text/css" href="/css/libreplan_zk.css"?>
+<?component name="list" inline="true" macroURI="_list.zul"?>
+
+
+<zk>
+    <window self="@{define(content)}"  apply="com.main.zk.Rental.MyViewModel"
+           
+            sclass="workerwindow">
+
+        <vbox id="messagesContainer"/>
+
+        <list top_id="listWindow" />
+
+
+    </window>
+</zk>

@@ -1,0 +1,23 @@
+<?link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" ?>
+<?link rel="stylesheet" type="text/css" href="/css/dashboard.css" ?>
+<zk xmlns:w="client" xmlns:n="native">
+<zscript>
+        <![CDATA[
+      
+        contextPath = Executions.getCurrent().getContextPath();
+        
+    ]]>
+    </zscript>
+    <separator></separator>
+ <separator></separator>
+  <separator></separator>
+   <separator></separator>
+    <separator></separator>
+     <separator></separator>
+      <separator></separator>
+   <div align="center">
+     <image src="image/fondogit.png"></image>
+   </div>
+    
+</zk>
+

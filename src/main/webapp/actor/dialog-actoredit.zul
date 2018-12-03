@@ -1,0 +1,74 @@
+<?page title="Departments" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window   title="Actor" id="actor"
+		border="normal" width="50%" mode="modal" maximizable="false"
+		closable="true"  position="center,parent"
+		viewModel="@id('vm') @init('com.main.zk.Rental.ActorOperations')"
+		validationMessages="@id('vmsgs')">
+		<panel width="100%">
+			<panelchildren>
+				<separator />
+				<grid sclass="vgrid">
+					<columns>
+						<column />
+						<column />
+						<column />
+					</columns>
+					<rows>
+							<row>
+							<label value="ID Actor:" />
+							<cell>
+								<textbox id="id" hflex="1" sclass="form-control" placeholder="Automatic"
+									mold="rounded" disabled="true"
+									value="@load(vm.selectedRecord.actor_id) @save(vm.selectedRecord.actor_id,before='updateThis')" />
+								<label class="error"
+									value="@load(vmsgs['id'])" />
+							</cell>
+						</row>
+						
+						<row>
+							<label value="First Name:" />
+							<cell colspan="2">
+								<textbox maxlength="100" sclass="form-control" 
+									id="fname" hflex="1" mold="rounded"
+									value="@load(vm.selectedRecord.first_name) @save(vm.selectedRecord.first_name,before='updateThis')
+									" />
+							</cell>
+							<cell>
+								<label id="fn" sclass="validation"
+									value="@bind(vmsgs[fname])" />
+							</cell>
+						</row>
+						
+							<row>
+							<label value="Last Name:" />
+							<cell colspan="2">
+								<textbox maxlength="100" sclass="form-control" 
+									id="lname" hflex="1" mold="rounded"
+									value="@load(vm.selectedRecord.last_name) @save(vm.selectedRecord.last_name,before='updateThis')
+									" />
+							</cell>
+							<cell>
+								<label id="flname" sclass="validation"
+									value="@bind(vmsgs[lname])" />
+							</cell>
+						</row>
+					
+					</rows>
+				</grid>
+			</panelchildren>
+		</panel>
+		<separator />
+		<separator />
+		<separator />
+		<div align="center">
+			<div align="center">
+			<button  sclass="create-button global-action"  mold="trendy"
+				onClick="@command('updateThis')" label="Actualizar" />
+			<button sclass="cancel-button global-action" label="Cancelar" onClick="@command('closeThis')"
+				mold="trendy"/>
+				</div>
+		</div>
+		<separator />
+	</window>
+</zk>

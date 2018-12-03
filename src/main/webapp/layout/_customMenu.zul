@@ -1,0 +1,102 @@
+<zk>
+<zscript>
+        <![CDATA[
+            contextPath = Executions.getCurrent().getContextPath();
+        ]]>
+    </zscript>
+<div id="menuContainer" xmlns:n="http://www.zkoss.org/2005/zk/native" use="com.mx.MenuController.CustomMenuController"
+    >
+
+ 
+
+     <menubar id="menubar" top="0px" left="0px"
+             ctrlKeys="^k#f2" onCtrlKey="doCtrlKey()"   sclass="mainmenu z-menubar"  autodrop="true">
+
+        <menu forEach="${menuContainer.customMenuItems}" label="${each.name}"
+            class="${each.activeParent?'current-section':''}"  >
+            <menupopup sclass="submenu">
+                <menuitem forEach="${each.children}" label="${each.name}"
+                          href='${each.url}' visible="${each.hasNotChildren}" />
+
+                <menu forEach="${each.children}" label="${ieach.name}" visible="${each.hasChildren}" >
+                    <menupopup>
+                        <menuitem forEach="${forEachStatus.each.children}"
+                                  label="${each.name}" href='${each.url}'  />
+                    </menupopup>
+                </menu>
+            </menupopup>
+        </menu>
+
+    </menubar>
+
+      <n:table width="100%" height="30" border="0" cellpadding="0" cellspacing="0">
+        <n:tr>
+            <n:td class="migas_linea">
+                <n:table border="0" cellspacing="0" cellpadding="0">
+                    <n:tr class="ruta">
+                        <n:td width="10" height="25"/>
+
+                        <n:td>
+                            <n:strong>Time</n:strong>
+                        </n:td>
+
+                        <n:td width="5"/>
+
+                        <n:td>
+                            <hbox id="breadcrumbs"/>
+                            <hbox>
+                               <!--  <hbox forEach="${menuContainer.breadcrumbsPath}">-->
+                                    <n:div align="center">
+                                        <n:img src="${contextPath}/image/migas_separacion.gif" />
+                                    </n:div>
+                                    <label id="lbl2" width="100%" />
+												<timer id="timer2" delay="1000" repeats="true" >
+													<attribute name="onTimer">
+																Locale locale = org.zkoss.util.Locales.getCurrent();
+																java.text.DateFormat dateFormat = java.text.DateFormat.getDateTimeInstance(
+																java.text.DateFormat.MEDIUM, java.text.DateFormat.MEDIUM, locale);
+																String strTime = dateFormat.format(java.util.Calendar.getInstance(locale).getTime());
+																lbl2.setValue(strTime);
+													</attribute>
+												</timer>
+                                    <!--  <n:span class="ruta">${each.name}</n:span>-->
+                                <!-- </hbox>-->
+                            </hbox>
+                        </n:td>
+                    </n:tr>
+                </n:table>
+            </n:td>
+
+            <n:td valign="top" align="right" class="help-link">
+
+                <div>
+                    <n:a href="${menuContainer.helpLink}" target="_blank">
+                        <n:span style="">Help</n:span>
+                    </n:a>
+
+                    <div tooltip="help-popup" style="display:inline;">
+                        <n:img src="${contextPath}/image/axuda.gif" alt="Axuda" width="23" height="24" border="0"
+                               style="margin-top:4px;"/>
+                    </div>
+
+                    <div tooltip="help-about" style="display:inline;">
+                        <n:img src="${contextPath}/image/info.gif" alt="Info" width="23" height="24" border="0"
+                               style="margin-top:4px;"/>
+                    </div>
+                </div>
+
+            </n:td>
+        </n:tr>
+    </n:table>
+
+    <popup id="help-popup" width="700px" >
+        <iframe id="helpIframe" width="670px" height="450px" style="border: 1px solid gray" />
+    </popup>
+
+    <popup id="help-about" width="700px" >
+        <iframe id="aboutIframe" width="670px" height="350px" style="border: 1px solid gray" />
+    </popup>
+
+</div>
+
+</zk>
