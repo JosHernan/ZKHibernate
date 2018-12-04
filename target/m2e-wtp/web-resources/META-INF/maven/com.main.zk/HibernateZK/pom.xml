@@ -40,11 +40,26 @@
 		</pluginRepository>
 	</pluginRepositories>
 	<dependencies>
-
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-spatial</artifactId>
+    <version>5.2.11.Final</version>
+</dependency>
+<dependency>
+    <groupId>org.jboss.spec.javax.transaction</groupId>
+    <artifactId>jboss-transaction-api_1.1_spec</artifactId>
+    <version>1.0.1.Final</version>
+</dependency>
 <dependency>
   <groupId>org.zkoss.theme</groupId>
   <artifactId>sapphire</artifactId>
   <version>${zk.version}</version>
+</dependency>
+
+<dependency>
+    <groupId>org.geolatte</groupId>
+    <artifactId>geolatte-geom</artifactId>
+    <version>1.1.0</version>
 </dependency>
 
 	    <dependency>

@@ -3,36 +3,50 @@ package com.test;
 
 import java.util.List;
 
-import com.entidades.actor;
-import com.hibernate.dao.ActorManager;
-import com.hibernate.impl.ActorDaoImpl;
+
+import com.entidades.address;
+import com.hibernate.dao.AddressManager;
+import com.hibernate.impl.AddressDaoImpl;
+
+
 
 public class Main {
-	static List<actor> actores;;
+	static List<address> address;;
 	public static void main(String[] args) {
-		ActorDaoImpl obj=new ActorDaoImpl();
+		AddressDaoImpl obj=new AddressDaoImpl();
 		obj.setup();
 		System.out.println("YA ME CONEXTE");
 		
-		List<actor>objactor=null;
+		List<address>objaddress=null;
 		
-		objactor=getActor();
+		objaddress=getAddress();
 		
-		for (actor actor : objactor) {
+		for (address addr : objaddress) {
 			System.out.println("Entre a la lista");
-			System.out.println(actor.getFirst_name());
+			System.out.println(addr.getAddress_id());
+			System.out.println(addr.getAddress());
+			System.out.println(addr.getAddress2());
+			System.out.println(addr.getCity_id());
+			System.out.println(addr.getPostal_code());
+			System.out.println(addr.getPhone());
+			System.out.println("Geo X:"+addr.getLocation().getCoordinate().x);
+			System.out.println("Geo Y:"+addr.getLocation().getCoordinate().y);
+			
+			
 		}
 		
 		
 	}
 	
-	public static List<actor>getActor(){
-		ActorManager act=new ActorDaoImpl();
-		actores=act.listActor();
+	public static List<address>getAddress(){
+		AddressManager act=new AddressDaoImpl();
+		address=act.listAddress();
 		
-		return actores;
+		return address;
 		 
 	}
+	
+	
 	
 	
 

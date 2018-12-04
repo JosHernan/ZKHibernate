@@ -1,11 +1,10 @@
 package com.main.zk.Rental;
 
-import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.naming.InitialContext;
-import javax.sql.DataSource;
+
 
 import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.AfterCompose;
@@ -14,7 +13,6 @@ import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
 import org.zkoss.bind.annotation.ContextType;
 import org.zkoss.bind.annotation.GlobalCommand;
-import org.zkoss.bind.annotation.Init;
 import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
@@ -33,6 +31,10 @@ import com.hibernate.impl.ActorDaoImpl;
 
 public class MyViewModel extends GenericForwardComposer<Component> {
 
+			/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 			private actor SelectedItem;
 			private ArrayList<actor>  showActor=new ArrayList<actor>();
 		  //  private ArrayList<gender> listGender=new ArrayList<gender>();
@@ -64,11 +66,22 @@ public class MyViewModel extends GenericForwardComposer<Component> {
 			
 				Selectors.wireComponents(view, this, false);
 				ActorDaoImpl obj=new ActorDaoImpl();
-				obj.setup();
+				
+				
 				 try {
 					
-					 ActorManager dao=new ActorDaoImpl();
-					 showActor=dao.listActor();
+					 if(obj.setup()!=0) {
+						 ActorManager dao=new ActorDaoImpl();
+						 showActor=dao.listActor();
+					}else {
+						
+						Messagebox.show("No se establecio conexion"
+								+ "Revise la configuracion:", "Exception Hibernate", Messagebox.OK,
+								Messagebox.ERROR);
+						
+						return;
+					}
+					 
 					
 				
 					 
@@ -157,30 +170,34 @@ public class MyViewModel extends GenericForwardComposer<Component> {
 			
 				ActorDaoImpl obj=new ActorDaoImpl();
 				try {
-					try {
-						
-						obj.setup();
-
-					} catch (Exception err) {
-						System.out.println("No se establecio conexion con la Base de Datos.");
-							obj=null;
-						return;
-						// TODO: handle exception
-					}
-					 if(this.SelectedItem.getActor_id()==0){
-						 Messagebox.show("Campo Obligatorio", "INFORMACIONN", Messagebox.OK,
-									Messagebox.INFORMATION);
-						
-							return;
-						}
-					 ActorManager dao=new ActorDaoImpl();
-					 dao.deleteActor(this.SelectedItem);
 					
-					 showActor.remove(showActor.indexOf(SelectedItem));
-					Messagebox.show("Registros eliminado correctamente",
-							"INFORMACION", Messagebox.OK, Messagebox.INFORMATION);
-					BindUtils
-							.postNotifyChange(null, null, MyViewModel.this, "showActor");
+						
+						if(obj.setup()!=0) {
+							if(this.SelectedItem.getActor_id()==0){
+								 Messagebox.show("Campo Obligatorio", "INFORMACIONN", Messagebox.OK,
+											Messagebox.INFORMATION);
+								
+									return;
+								}
+							 ActorManager dao=new ActorDaoImpl();
+							 dao.deleteActor(this.SelectedItem);
+							
+							 showActor.remove(showActor.indexOf(SelectedItem));
+							Messagebox.show("Registros eliminado correctamente",
+									"INFORMACION", Messagebox.OK, Messagebox.INFORMATION);
+							BindUtils
+									.postNotifyChange(null, null, MyViewModel.this, "showActor");
+						}else {
+							Messagebox.show("No se establecio conexion"
+									+ "Revise la configuracion:", "Exception Hibernate", Messagebox.OK,
+									Messagebox.ERROR);
+							
+							return;
+					
+						}
+
+					
+					 
 					
 				
 				} catch (Exception e) {

@@ -12,6 +12,7 @@
     <property name="show_sql">true</property>
         
     <mapping class="com.entidades.actor" />
+    <mapping class="com.entidades.address" />
      
   </session-factory>
 </hibernate-configuration>

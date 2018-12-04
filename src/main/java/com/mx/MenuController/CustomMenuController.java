@@ -274,7 +274,7 @@ public class CustomMenuController extends Div implements IMenuItemsRegister{
 
         if ( SecurityUtils.isSuperuserOrUserInRoles(UserRole.ROLE_ADDRESS) ) {
           
-            planningItems.add(subItem(("Address"), "", ""));
+            planningItems.add(subItem(("Address"), "/address/address.zul", ""));
         }
         if ( SecurityUtils.isSuperuserOrUserInRoles(UserRole.ROLE_CATEGORY) ) {
             

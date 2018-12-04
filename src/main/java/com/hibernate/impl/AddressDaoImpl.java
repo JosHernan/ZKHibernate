@@ -2,7 +2,6 @@ package com.hibernate.impl;
 
 import java.util.ArrayList;
 
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,10 +10,12 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
 
-import com.entidades.actor;
-import com.hibernate.dao.ActorManager;
+import com.entidades.address;
+import com.hibernate.dao.AddressManager;
 
-public class ActorDaoImpl implements ActorManager{
+
+
+public class AddressDaoImpl implements AddressManager {
 	protected static  SessionFactory sessionFactory;
 
 	public int setup() {
@@ -35,16 +36,19 @@ public class ActorDaoImpl implements ActorManager{
 	}
 	
 	
-	@SuppressWarnings("deprecation")
-	public ArrayList<actor> listActor() {
+	
+	public ArrayList<address> listAddress() {
 		Session session = sessionFactory.openSession();
 		
-		ArrayList<actor> lista=null;
+		ArrayList<address> lista=null;
+		
 		try {
 			
-			@SuppressWarnings("unchecked")
-			Query<actor> query=session.createQuery("from actor");
-			lista=(ArrayList<actor>)query.list();
+		
+			Query<address> query=session.createQuery("from address");
+			lista=(ArrayList<address>)query.list();
+			
+		
 		} catch (HibernateException e) {
 		System.out.println(e.getMessage());
 		}finally {
@@ -55,11 +59,11 @@ public class ActorDaoImpl implements ActorManager{
 		return lista;
 	}
 
-	public void insertActor(actor act) {
+	public void insertAddress(address adr) {
 		Session session = sessionFactory.openSession();
 		try {
 			session.beginTransaction();
-			session.save(act);
+			session.save(adr);
 			session.getTransaction().commit();
 		   
 			 
@@ -75,11 +79,11 @@ public class ActorDaoImpl implements ActorManager{
 		
 	}
 
-	public void updateActor(actor act) {
+	public void updateAddress(address adr) {
 		Session session = sessionFactory.openSession();
 		try {
 			session.beginTransaction();
-			session.update(act);
+			session.update(adr);
 			session.getTransaction().commit();
 		   
 			 
@@ -95,11 +99,11 @@ public class ActorDaoImpl implements ActorManager{
 		
 	}
 
-	public void deleteActor(actor act) {
+	public void deleteAddress(address adr) {
 		Session session = sessionFactory.openSession();
 		try {
 			session.beginTransaction();
-			session.delete(act);
+			session.delete(adr);
 			session.getTransaction().commit();
 		   
 			 
@@ -114,5 +118,4 @@ public class ActorDaoImpl implements ActorManager{
 		}
 		
 	}
-
 }

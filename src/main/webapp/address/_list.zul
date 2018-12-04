@@ -1,0 +1,58 @@
+
+
+<window id="${arg.top_id}" border="none" title="Address List"
+	viewModel="@id('vm') @init('com.hibernate.ViewAddress.ViewAddress')"	>
+  <separator bar="false" spacing="5px" orient="horizontal"/>
+
+
+
+    <separator bar="false" spacing="5px" orient="horizontal"/>
+    
+				<div>
+			<listbox width="100%" id="" mold="paging" pageSize="10"  
+				pagingPosition="bottom" selectedItem="@bind(vm.selectedItem)"
+				model="@load(vm.showAddress)">
+				<listhead sizable="true">
+					<listheader align="center"
+						 label="Address Id"
+						sortDirection="ascending" sort="auto(address_id)" />
+					<listheader align="left" label="Address" />
+					<listheader align="left" label="Address(2)" />
+				    <listheader align="left" label="District" />
+				    <listheader align="left" label="City_Id" />
+				    <listheader align="left" label="PostalCode" />
+				    <listheader align="left" label="Phone" />
+				    <listheader align="left" label="Location" />
+			
+					<listheader align="left" label="Operations" width="80px" />
+				</listhead>
+				<template name="model" var="addr">
+					<listitem>
+						<listcell label="@load(addr.address_id)"  />
+						<listcell label="@load(addr.address)" />
+						<listcell label="@load(addr.address2)" />
+						<listcell label="@load(addr.district)" />
+						<listcell label="@load(addr.city_id)" />
+						<listcell label="@load(addr.postal_code)" />
+						<listcell label="@load(addr.phone)" />
+					    <listcell label="@load(addr.location.coordinate)" />
+						
+						<listcell>
+							<hbox spacing="15px" >
+							<image tooltiptext="Edit Actor" src="/image/ico_editar.png"  onClick="@command('onEdit',actorRecord=act1)"/>
+							<image  tooltiptext="Delete Actor" src="/image/ico_borrar.png"    onClick="@command('onDelete',actorRecord=act1)" />
+							</hbox>
+						</listcell>
+					</listitem>
+				</template>
+			</listbox>
+		</div>
+		  <button id="show_create_form" onClick="@command('onAddNew')"
+            label="create" sclass="create-button global-action">
+         </button>
+		<separator />
+		<separator />
+		<separator />
+		<separator />
+		<separator />
+	</window>
